@@ -28,6 +28,10 @@ module rib() {
     cube([ribThickness, moldY + wallThickness, ribWidth]);
 }
 
+module endRib() {
+    cube([moldX+2*wallThickness+2* ribThickness, ribThickness, ribWidth]);
+}
+
 
 difference() {
     bounds();
@@ -43,11 +47,17 @@ difference() {
 
     translate([-ribThickness,0,ribSpacing])
     rib();
-    # translate([-ribThickness,0,ribSpacing*2+ribWidth])
+    translate([-ribThickness,0,ribSpacing*2+ribWidth])
     rib();
 
     translate([moldX+2*wallThickness,0,ribSpacing])
     rib();
     translate([moldX+2*wallThickness,0,ribSpacing*2+ribWidth])
     rib();
+
+    translate([-ribThickness,moldY + wallThickness,ribSpacing])
+    # endRib();
+
+    translate([-ribThickness,moldY + wallThickness,ribSpacing*2+ribWidth])
+    endRib();
 
